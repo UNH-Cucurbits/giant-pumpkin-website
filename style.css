@@ -1,0 +1,200 @@
+/* Global */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  background: #fafafa;
+  color: #333;
+  line-height: 1.6;
+  font-size: 18px;
+}
+
+/* Hero */
+.hero {
+  background: url('images/hero-pumpkin.jpg') center/cover no-repeat;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  color: white;
+  text-align: center;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.15);
+}
+
+.hero-text {
+  position: relative;
+  max-width: 700px;
+  margin-left: 5%;
+  text-align: left;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  margin: 0;
+}
+
+.hero p {
+  font-size: 1.5rem;
+  margin: 20px 0;
+}
+
+.donate-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 15px 30px;
+  background: #2e7d32;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 18px;
+  transition: background 0.3s;
+}
+
+.donate-button:hover {
+  background: #1b5e20;
+}
+
+/* Sections */
+.section {
+  padding: 60px 20px;
+  max-width: 900px;
+  margin: auto;
+  text-align: left;
+}
+
+.section h2 {
+  color: #d96f2b;
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+/* Footer */
+footer {
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+}
+
+/* Pumpkin Seed Menu */
+.menu-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+#menu-toggle { display: none; }
+
+/* Seed button */
+.menu-toggle {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  z-index: 1010; /* stays above menu */
+}
+
+/* Seed SVG */
+.seed-img {
+  width: 60px;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+/* DNA SVG */
+.dna-img {
+  position: absolute;
+  top: 5px; 
+  left: 50%;
+  transform: translateX(-10%) translateY(0);
+  width: 40px; 
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none; 
+}
+
+/* Seed rotates when menu opens */
+#menu-toggle:checked + .menu-toggle .seed-img {
+  transform: rotate(-15deg) scale(1.1);
+}
+
+/* DNA appears when menu opens */
+#menu-toggle:checked + .menu-toggle .dna-img {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-15px);
+}
+
+/* Menu panel */
+.menu {
+  position: fixed;
+  top: 0;
+  right: -250px;
+  width: 250px;
+  height: 100vh;
+  background: #fff7e6;
+  box-shadow: -4px 0 10px rgba(0,0,0,0.2);
+  padding: 60px 20px;
+  transition: right 0.5s ease;
+  z-index: 1000; /* behind seed */
+}
+
+#menu-toggle:checked ~ .menu {
+  right: 0;
+}
+
+/* Menu links */
+.menu ul { list-style: none; padding: 0; margin: 0; }
+.menu ul li { margin-bottom: 20px; }
+.menu ul li a { text-decoration: none; color: #d96f2b; font-weight: bold; }
+
+/* Hover effect for seed */
+.menu-toggle:hover .seed-img { transform: rotate(-10deg) scale(1.05); }
+
+/* Funding Progress Bar */
+.progress-container {
+  background: #eee;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 100%;
+  height: 30px;
+  margin-top: 20px;
+  position: relative;
+}
+
+.progress-bar {
+  --progress: 0; /* default 0 */
+  width: calc(var(--progress) * 100%);
+  max-width: 200%; /* allow >100% visually */
+  background: linear-gradient(90deg, #2e7d32, #81c784);
+  height: 100%;
+  transition: width 0.8s ease;
+  position: relative;
+}
+
+.progress-label {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 0;
+  line-height: 30px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 3px rgba(0,0,0,0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2.5rem; }
+  .hero p { font-size: 1.2rem; }
+  .section { padding: 40px 15px; }
+  .menu { width: 200px; padding: 50px 15px; }
+}
+
