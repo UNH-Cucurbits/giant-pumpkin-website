@@ -179,8 +179,10 @@ body {
 
 /* Footer */
 footer {
+  background: #f5f5f5; /* light gray, just distinct from white page */
   text-align: center;
-  padding: 2rem;
+  padding: 2rem 1rem;
   font-size: 0.9rem;
-  color: #666;
+  color: #222; /* dark text for contrast */
+  border-top: 1px solid #ddd; /* subtle top border */
 }
