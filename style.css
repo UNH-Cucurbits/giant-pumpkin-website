@@ -1,200 +1,186 @@
-/* Global */
+/* Root font scaling for responsive text */
+html {
+  font-size: clamp(16px, 1.2vw, 20px);
+}
+
 body {
-  font-family: 'Arial', sans-serif;
   margin: 0;
-  background: #fafafa;
-  color: #333;
+  font-family: system-ui, sans-serif;
   line-height: 1.6;
-  font-size: 18px;
+  color: #222;
 }
 
-/* Hero */
-.hero {
-  background: url('images/hero-pumpkin.jpg') center/cover no-repeat;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  color: white;
-  text-align: center;
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.15);
-}
-
-.hero-text {
-  position: relative;
-  max-width: 700px;
-  margin-left: 5%;
-  text-align: left;
-}
-
-.hero h1 {
-  font-size: 4rem;
-  margin: 0;
-}
-
-.hero p {
-  font-size: 1.5rem;
-  margin: 20px 0;
-}
-
-.donate-button {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 15px 30px;
-  background: #2e7d32;
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  font-size: 18px;
-  transition: background 0.3s;
-}
-
-.donate-button:hover {
-  background: #1b5e20;
-}
-
-/* Sections */
-.section {
-  padding: 60px 20px;
-  max-width: 900px;
-  margin: auto;
-  text-align: left;
-}
-
-.section h2 {
-  color: #d96f2b;
-  margin-bottom: 20px;
-  font-size: 2rem;
-}
-
-/* Footer */
-footer {
-  background: #333;
-  color: #fff;
-  text-align: center;
-  padding: 20px;
-  font-size: 14px;
-}
-
-/* Pumpkin Seed Menu */
-.menu-container {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 1000;
-}
-
-#menu-toggle { display: none; }
-
-/* Seed button */
+/* MENU TOGGLE (Seed → DNA) */
 .menu-toggle {
-  display: inline-block;
   cursor: pointer;
-  position: relative;
-  z-index: 1010; /* stays above menu */
-}
-
-/* Seed SVG */
-.seed-img {
-  width: 60px;
-  height: auto;
   display: block;
-  transition: transform 0.5s ease;
+  width: 50px;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1001;
+  transition: transform 0.3s ease;
+  will-change: transform; /* improve scroll performance */
 }
 
-/* DNA SVG */
-.dna-img {
+.seed-img, .dna-img {
+  width: 100%;
   position: absolute;
-  top: 5px; 
-  left: 50%;
-  transform: translateX(-10%) translateY(0);
-  width: 40px; 
+  top: 0;
+  left: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.dna-img {
   opacity: 0;
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  pointer-events: none; 
 }
 
-/* Seed rotates when menu opens */
+#menu-toggle {
+  display: none;
+}
+
 #menu-toggle:checked + .menu-toggle .seed-img {
-  transform: rotate(-15deg) scale(1.1);
+  opacity: 0;
 }
 
-/* DNA appears when menu opens */
 #menu-toggle:checked + .menu-toggle .dna-img {
   opacity: 1;
-  transform: translateX(-50%) translateY(-15px);
 }
 
-/* Menu panel */
+/* HOVER FLOAT + TILT ANIMATION */
+.menu-toggle:hover .seed-img,
+.menu-toggle:hover .dna-img {
+  transform: translateY(-5px) rotate(-5deg);
+}
+
+.menu-toggle .seed-img,
+.menu-toggle .dna-img {
+  transition: transform 0.3s cubic-bezier(0.25, 1.5, 0.5, 1), opacity 0.3s ease;
+}
+
+
+/* MENU PANEL */
 .menu {
   position: fixed;
   top: 0;
-  right: -250px;
-  width: 250px;
+  right: -220px;
+  width: 220px;
   height: 100vh;
-  background: #fff7e6;
-  box-shadow: -4px 0 10px rgba(0,0,0,0.2);
-  padding: 60px 20px;
-  transition: right 0.5s ease;
-  z-index: 1000; /* behind seed */
+  background: white;
+  display: flex;
+  flex-direction: column;
+  padding-top: 6rem;
+  transition: right 0.3s;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+  font-size: 0.9rem;
+  z-index: 1000;
+}
+
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  padding: 0.7rem 1.5rem;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #222;
 }
 
 #menu-toggle:checked ~ .menu {
   right: 0;
 }
 
-/* Menu links */
-.menu ul { list-style: none; padding: 0; margin: 0; }
-.menu ul li { margin-bottom: 20px; }
-.menu ul li a { text-decoration: none; color: #d96f2b; font-weight: bold; }
+/* HERO */
+.hero {
+  background: url("images/hero-pumpkin.jpg") center/cover no-repeat;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  color: white;
+}
 
-/* Hover effect for seed */
-.menu-toggle:hover .seed-img { transform: rotate(-10deg) scale(1.05); }
+.hero::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(0,0,0,0.25);
+}
 
-/* Funding Progress Bar */
+.hero-text {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin-left: 6%;
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Buttons */
+.button, .donate-button {
+  display: inline-block;
+  background: #f57c00;
+  color: white;
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  margin-top: 1rem;
+}
+
+/* Sections */
+.section {
+  max-width: 750px;
+  margin: auto;
+  padding: 4rem 1.5rem;
+}
+
+.section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Progress Bar */
 .progress-container {
   background: #eee;
-  border-radius: 12px;
-  overflow: hidden;
-  width: 100%;
   height: 30px;
-  margin-top: 20px;
-  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 1rem;
 }
 
 .progress-bar {
-  --progress: 0; /* default 0 */
-  width: calc(var(--progress) * 100%);
-  max-width: 200%; /* allow >100% visually */
-  background: linear-gradient(90deg, #2e7d32, #81c784);
   height: 100%;
-  transition: width 0.8s ease;
-  position: relative;
+  background: linear-gradient(90deg, #2e7d32, #66bb6a);
+  width: calc(var(--progress) * 100%);
+  max-width: 200%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
 }
 
 .progress-label {
-  position: absolute;
-  width: 100%;
+  font-size: 0.9rem;
+}
+
+/* Footer */
+footer {
   text-align: center;
-  top: 0;
-  line-height: 30px;
-  font-weight: bold;
-  color: #fff;
-  text-shadow: 0 0 3px rgba(0,0,0,0.5);
+  padding: 2rem;
+  font-size: 0.9rem;
+  color: #666;
 }
-
-/* Responsive */
-@media (max-width: 768px) {
-  .hero h1 { font-size: 2.5rem; }
-  .hero p { font-size: 1.2rem; }
-  .section { padding: 40px 15px; }
-  .menu { width: 200px; padding: 50px 15px; }
-}
-
