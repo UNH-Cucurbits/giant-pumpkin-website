@@ -152,30 +152,50 @@ body {
   margin-bottom: 1rem;
 }
 
-/* Progress Bar */
+/* Progress Bar Container */
 .progress-container {
-  background: #eee;
-  height: 30px;
-  border-radius: 10px;
-  overflow: hidden;
   margin-bottom: 1rem;
 }
 
+/* Overall bar frame */
 .progress-bar {
-  height: 100%;
-  background: linear-gradient(90deg, #2e7d32, #66bb6a);
-  width: calc(var(--progress) * 100%);
-  max-width: 200%;
+  width: 100%;
+  height: 30px;
+  background: #eee; /* neutral background */
+  border-radius: 15px; /* pill shape */
+  overflow: hidden;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 600;
 }
 
-.progress-label {
-  font-size: 0.9rem;
+/* Container for the colored portions */
+.progress-fill {
+  display: flex;
+  height: 100%;
+  width: 100%;
 }
+
+/* Portion up to goal */
+.main-fund {
+  background: rgba(46, 125, 50, 0.6); /* soft transparent green */
+  transition: flex 0.5s ease;
+  border-radius: 15px 0 0 15px; /* round left side */
+}
+
+/* Extra funding */
+.extra-fund {
+  background: rgba(255, 152, 0, 0.6); /* soft transparent orange */
+  transition: flex 0.5s ease;
+  border-radius: 0 15px 15px 0; /* round right side */
+}
+
+/* Funding text below */
+.progress-text {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  font-weight: 600;
+  color: #222;
+}
+
 
 /* Footer */
 footer {
@@ -185,4 +205,99 @@ footer {
   font-size: 0.9rem;
   color: #222; /* dark text for contrast */
   border-top: 1px solid #ddd; /* subtle top border */
+}
+
+/* All standard links */
+a {
+  color: #ff9800; /* complementary warm orange */
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:not(.button):not(.donate-button):not(.menu a) {
+  color: #ff9800;
+}
+
+a:not(.button):not(.donate-button):not(.menu a):hover {
+  color: #f57c00;
+}
+
+/* TEAM GRID */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.team-member {
+  text-align: center;
+}
+
+.team-photo {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  border: 4px solid #f57c00; /* optional accent border */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-photo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.team-member h3 {
+  margin: 0.5rem 0 0.3rem;
+  font-size: 1.2rem;
+  color: #222;
+}
+
+.team-member p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Budget Table  */
+.budget-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  font-family: system-ui, sans-serif;
+}
+
+.budget-table th,
+.budget-table td {
+  border: 1px solid #e0a060; /* soft orange border */
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.budget-table th {
+  background-color: #ffe5cc; /* very light orange header */
+  color: #222;
+  font-weight: 600;
+}
+
+.budget-table tr:nth-child(even) {
+  background-color: #fff2e6; /* subtle alternating row shading */
+}
+
+.budget-table tr:hover {
+  background-color: #ffe0b2; /* gentle hover highlight */
+}
+
+.total-row td {
+  background-color: #ffd699; /* slightly deeper orange for total row */
+  font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  .budget-table th, .budget-table td {
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
 }
