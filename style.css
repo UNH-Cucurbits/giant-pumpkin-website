@@ -276,3 +276,44 @@ blockquote::before {
   margin-top: 0.4rem;
   text-align: left;
 }
+/* TEAM PHOTO OVERLAY */
+
+.photo-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 2000;
+}
+
+.photo-overlay:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.photo-overlay img {
+  max-width: 85%;
+  max-height: 85%;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.photo-overlay .close {
+  position: absolute;
+  top: 25px;
+  right: 40px;
+  font-size: 2.5rem;
+  color: white;
+  text-decoration: none;
+}
+.team-photo {
+  cursor: zoom-in;
+}
