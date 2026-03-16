@@ -270,3 +270,9 @@ blockquote::before {
   color: #e0732a; /* harmonized pumpkin accent */
   font-size: 1rem;
 }
+.progress-note {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0.4rem;
+  text-align: left;
+}
