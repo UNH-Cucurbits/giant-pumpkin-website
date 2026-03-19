@@ -246,7 +246,7 @@ mainFund.style.flex = greenFraction;
 extraFund.style.flex = goldFraction;
 
 const percentFunded = (currentFunding / fundingGoal) * 100;
-progressText.textContent = `$${currentFunding.toLocaleString()} / $${fundingGoal.toLocaleString()} (${percentFunded.toFixed(0)}% funded)`;
+progressText.textContent = `$${currentFunding.toLocaleString()} / $${fundingGoal.toLocaleString()} (${percentFunded.toFixed(1)}% funded)`;
 </script>
 
 </body>
